@@ -1,94 +1,63 @@
-# Data structure to store a Binary Tree node
+# A recursive python program to find LCA of two nodes
+# n1 and n2
+
+# A Binary tree node
 class Node:
-    def __init__(self, data, left=None, right=None):
+
+    # Constructor to create a new node
+    def __init__(self, data):
         self.data = data
-        self.left = left
-        self.right = right
+        self.left = None
+        self.right = None
 
 
-# Function to check if given node is present in binary tree or not
-def isNodePresent(root, node):
-    # base case
+# Function to find LCA of n1 and n2. The function assumes
+# that both n1 and n2 are present in BST
+def lca(root, n1, n2):
+    # Base Case
     if root is None:
-        return False
+        return None
 
-    # if node is found, return true
-    if root == node:
-        return True
+    # If both n1 and n2 are smaller than root, then LCA
+    # lies in left
+    if (root.data > n1 and root.data > n2):
+        return lca(root.left, n1, n2)
 
-    # return true if node is found in the left subtree or right subtree
-    return isNodePresent(root.left, node) or isNodePresent(root.right, node)
+    # If both n1 and n2 are greater than root, then LCA
+    # lies in right
+    if (root.data < n1 and root.data < n2):
+        return lca(root.right, n1, n2)
 
-
-# Function to find lowest common ancestor of given nodes x and y where
-# both x and y are present in the binary tree.
-# The function returns true if x or y is found in subtree rooted at root
-# lca -> stores LCA(x, y)
-def findlca(root, lca, x, y):
-    # base case 1: return false if tree is empty
-    if root is None:
-        return False, lca
-
-    # base case 2: return true if either x or y is found
-    # with lca set to the current node
-    if root == x or root == y:
-        return True, root
-
-    # recursively check if x or y exists in the left subtree
-    left, lca = findlca(root.left, lca, x, y)
-
-    # recursively check if x or y exists in the right subtree
-    right, lca = findlca(root.right, lca, x, y)
-
-    # if x is found in one subtree and y is found in other subtree,
-    # update lca to current node
-    if left and right:
-        lca = root
-
-    # return true if x or y is found in either left or right subtree
-    return (left or right), lca
+    return root
 
 
-# Function to find lowest common ancestor of nodes x and y
-def findLCA(root, x, y):
-    # lca stores lowest common ancestor
-    lca = None
+# Driver program to test above function
 
-    # call LCA procedure only if both x and y are present in the tree
-    if isNodePresent(root, y) and isNodePresent(root, x):
-        lca = findlca(root, lca, x, y)[1]
+# Let us construct the BST shown in the figure
+root = Node(20)
+root.left = Node(8)
+root.right = Node(22)
+root.left.left = Node(4)
+root.left.right = Node(12)
+root.left.right.left = Node(10)
+root.left.right.right = Node(14)
 
-    # if LCA exists, print it
-    if lca:
-        print("LCA is", lca.data)
-    else:
-        print("LCA do not exist")
+n1 = 10;
+n2 = 14
+t = lca(root, n1, n2)
+print;
+"LCA of %d and %d is %d" % (n1, n2, t.data)
 
+n1 = 14;
+n2 = 8
+t = lca(root, n1, n2)
+print
+"LCA of %d and %d is %d" % (n1, n2, t.data)
 
-if __name__ == '__main__':
-    """ Construct below tree
-          1
-        /   \
-       /     \
-      2          3
-       \     / \
-        4   5   6
-           / \
-          7   8
-    """
+n1 = 10;
+n2 = 22
+t = lca(root, n1, n2)
+print
+"LCA of %d and %d is %d" % (n1, n2, t.data)
 
-    root = Node(1)
-    root.left = Node(2)
-    root.right = Node(3)
-    root.left.right = Node(4)
-    root.right.left = Node(5)
-    root.right.right = Node(6)
-    root.right.left.left = Node(7)
-    root.right.right.right = Node(8)
-
-    findLCA(root, root.right.left.left, root.right.right)
-    findLCA(root, root.right.left.left, Node(10))
-    findLCA(root, root.right.left.left, root.right.left.left)
-    findLCA(root, root.right.left.left, root.right.left)
-    findLCA(root, root.left, root.right.left)
-
+# This code is contributed by Nikhil Kumar Singh(nickzuck_007)
