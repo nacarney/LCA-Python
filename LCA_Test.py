@@ -1,4 +1,5 @@
 import unittest
+from unittest import TestCase
 
 
 class MyTestCase(unittest.TestCase):
@@ -9,9 +10,16 @@ class MyTestCase(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
-    @unittest
+
+class Test(TestCase):
+    def test_lca(self):
+        self.fail()
 
 
+class TestNode(TestCase):
+    pass
 
 
-
+class Test(TestCase):
+    def test_tree_to_string(self):
+        self.fail()
