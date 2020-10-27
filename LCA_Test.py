@@ -32,4 +32,20 @@ class TestLCA(unittest.TestCase):
         n2 = 13
         assert lca(root, n1, n2).data == 15
 
+    def test_tree_to_string(self):
+
+        root = Node(20)
+        root.left = Node(8)
+        root.right = Node(22)
+        root.left.left = Node(4)
+        root.left.right = Node(12)
+        root.left.right.left = Node(10)
+        root.left.right.right = Node(14)
+
+        string = []
+        treeToString(root, string)
+
+        assert ''.join(string) == '20(8(4)(12(10)(14)))(22)'
+
+
 
