@@ -3,9 +3,9 @@ from LCA import Node
 from LCA import lca
 from LCA import treeToString
 
+
 class TestLCA(unittest.TestCase):
     def test_lca_output(self):
-
         root = Node(20)
         root.left = Node(8)
         root.right = Node(22)
@@ -18,9 +18,7 @@ class TestLCA(unittest.TestCase):
         n2 = 14
         assert lca(root, n1, n2).data == 12
 
-
     def test_lca_output_2(self):
-
         root = Node(15)
         root.left = Node(12)
         root.left.left = Node(11)
@@ -32,8 +30,9 @@ class TestLCA(unittest.TestCase):
         n2 = 13
         assert lca(root, n1, n2).data == 15
 
-    def test_tree_to_string(self):
 
+class toString(unittest.TestCase):
+    def test_tree_to_string(self):
         root = Node(20)
         root.left = Node(8)
         root.right = Node(22)
@@ -46,6 +45,15 @@ class TestLCA(unittest.TestCase):
         treeToString(root, string)
 
         assert ''.join(string) == '20(8(4)(12(10)(14)))(22)'
+
+class TestTreesAndNodes(unittest.TestCase):
+    def test_LCA_none_node(self):
+        n1 = 1
+        n2 = 3
+
+        assert lca(None, n1, n2) is None
+
+
 
 
 
