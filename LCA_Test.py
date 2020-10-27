@@ -53,6 +53,30 @@ class TestTreesAndNodes(unittest.TestCase):
 
         assert lca(None, n1, n2) is None
 
+    def test_LCA_single_node_tree(self):
+
+        root = Node(1)
+        n1 = 1
+        n2 = 3
+
+        assert lca(root, n1, n2).data == 1
+
+    def test_arguments_not_in_tree(self):
+
+        root = Node(2)
+        root.left = Node(1)
+        root.right = Node(3)
+
+        n1 = 5
+        n2 = 6
+
+        assert lca(root, n1, n2) is None
+
+
+
+
+
+
 
 
 
