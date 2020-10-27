@@ -72,6 +72,12 @@ class TestTreesAndNodes(unittest.TestCase):
 
         assert lca(root, n1, n2) is None
 
+    def test_empty_tree(self):
+
+        root = None
+        assert lca(root, 3, 4) is None
+
+
 
 
 
