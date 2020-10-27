@@ -28,13 +28,8 @@ class TestLCA(unittest.TestCase):
         root.right = Node(18)
         root.right.left = Node(17)
 
-        n1 = 11
+        n1 = 17
         n2 = 13
-
-        #               _15_
-        #              /
-        #
-        #
-        #
+        assert lca(root, n1, n2).data == 15
 
 
