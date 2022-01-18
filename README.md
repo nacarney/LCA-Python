@@ -1,4 +1,4 @@
-# LCA-Python-
+# LCA-Python
 Python Implementation
 
 JAVA REPOSITORY LINK <- https://github.com/nacarney/LCA
